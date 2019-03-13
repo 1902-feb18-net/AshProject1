@@ -1,0 +1,26 @@
+﻿@page "{productid:int}"
+
+@model WebInABox.Pages.Products.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+
+<h1>@Model.Product.ProductName</h1>
+<div>
+    Id: @Model.Product.Id
+</div>
+<div>
+    Price: @Model.Product.Price
+</div>
+<div>
+    Category: @Model.Product.Category
+</div>
+
+@if(Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+<a asp-page="./List"class="btn btn-dark">View All Products</a>

@@ -1,0 +1,71 @@
+﻿@page
+@model WebInABox.Pages.Customers.CustomerListModel
+
+@{
+    ViewData["Title"] = "CustomerList";
+}
+
+<h1>Orders</h1>
+
+<div class="card card-body bg-dark">
+    <h4>Customer Information:</h4>
+
+    <form method="get">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="search" class="form-control" value="" name="searchTerm" />
+                <span class="input-group-btn">
+                    <button class="btn btn-outline-light">
+                        <i class="glyphicon glyphicon-search">Search</i>
+                    </button>
+
+                </span>
+            </div>
+        </div>
+
+   </form>
+    
+    <table class="table">
+        
+
+        @foreach (var customer in Model.Customers)
+         {
+            
+           <tr>
+               
+              <td>@customer.FirstName @customer.LastName</td>
+              <td>@customer.Address, @customer.City, @customer.State, @customer.ZipCode </td>
+              <td>
+                  <a class="btn btn-dark"
+                     asp-page="./Detail" asp-route-productId="@customer.Id">
+
+                      <i class="glyphicon glyphicon-zoom-in">More Info</i>
+                  </a>
+                  <a class="btn btn-dark"
+                     asp-page="./Edit" asp-route-productId="@customer.Id">
+
+                      <i class="glyphicon glyphicon-zoom-edit">Edit</i>
+                  </a>
+                  <a class="btn btn-dark"
+                     asp-page="./Delete" asp-route-productId="@customer.Id">
+
+                      <i class="glyphicon glyphicon-trash">Delete</i>
+                  </a>
+              </td>
+               
+               
+
+           </tr>
+
+         }
+
+
+
+    </table>
+
+
+</div>
+
+<a asp-page="./Edit" class="btn btn-primary">Add New Order</a>
+
+<div>@Model.Message</div>

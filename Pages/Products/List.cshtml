@@ -1,0 +1,58 @@
+﻿@page
+@model WebInABox.Pages.Products.ListModel
+@{
+}
+
+<h1>Products</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control"
+                   asp-for="SearchTerm" />
+            <span class="input-group-btn" >
+                <button class="btn btn-default">
+                    <i class="glyphicon glyphicon-search">Search</i>
+                </button>
+            </span> 
+        </div>
+   </div>
+    
+
+</form>
+
+<table class="table">
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <td>@product.ProductName</td>
+            <td>@product.Price</td>
+            <td>@product.Category</td>
+            <td>
+                <a class="btn btn-dark"
+                   asp-page="./Detail" asp-route-productId="@product.Id">
+
+                    <i class="glyphicon glyphicon-zoom-in">More Info</i>
+                </a>
+                <a class="btn btn-dark"
+                   asp-page="./Edit" asp-route-productId="@product.Id">
+
+                    <i class="glyphicon glyphicon-zoom-edit">Edit</i>
+                </a>
+                <a class="btn btn-dark"
+                   asp-page="./Delete" asp-route-productId="@product.Id">
+
+                    <i class="glyphicon glyphicon-trash">Delete</i>
+                </a>
+            </td>
+        </tr>
+    }
+    
+
+</table>
+
+<a asp-page="./Edit" class="btn btn-primary">Add New Product</a>
+
+
+
+<div>@Model.Message</div>
